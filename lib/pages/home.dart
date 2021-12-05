@@ -1,3 +1,4 @@
+import 'package:cripto_moeda/configs/app_settings.dart';
 import 'package:cripto_moeda/models/coin.dart';
 import 'package:cripto_moeda/pages/coin_detail.dart';
 import 'package:cripto_moeda/repositories/coin_repository.dart';
@@ -15,9 +16,34 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final coins = CoinRepository.coins;
-  NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
+  late NumberFormat real;
+  late Map<String, String> loc;
   List<Coin> selectedCoin = [];
   late FavoriteRepository favorites;
+
+  readFormat() {
+    loc = context.watch<AppSettings>().locale;
+    real = NumberFormat.currency(locale: loc['locale'], name: loc['name']);
+  }
+
+  changeLanguageButton() {
+    final locale = loc['locale'] == 'pt_BR' ? 'en_US' : 'pt_BR';
+    final name = loc['name'] == 'R\$' ? '\$' : 'R\$';
+  
+    return PopupMenuButton(
+      icon: const Icon(Icons.language),
+      itemBuilder: (context) => [
+          PopupMenuItem(child: ListTile(
+            leading: const Icon(Icons.swap_vert),
+            title: Text(locale),
+            onTap: () {
+              context.read<AppSettings>().setLocale(locale, name);
+              Navigator.pop(context);
+            },
+          ),)
+      ],
+    );
+  }
 
   appBarDinamic() {
     if(selectedCoin.isEmpty) {
@@ -26,6 +52,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [Text('Coins')],
         ),
+        actions: [changeLanguageButton()],
         automaticallyImplyLeading: false,
       );
     } else {
@@ -93,6 +120,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // favorites = Provider.of<FavoriteRepository>(context);
     favorites = context.watch<FavoriteRepository>();
+    readFormat();
 
     return Scaffold(
       appBar: appBarDinamic(),
@@ -101,16 +129,18 @@ class _HomePageState extends State<HomePage> {
             Coin coin = coins[idx];
             return
              ListTile(
-              leading: (selectedCoin.contains(coin)
-                  ? const CircleAvatar(
-                      child: Icon(Icons.check),
-                    )
-                  : SizedBox(
-                      child: Hero(
-                          tag: 'icon${coin.name}',
-                          child: Image.asset(coin.icon)),
-                      width: 40,
-                    )),
+              leading: (
+                selectedCoin.contains(coin)
+                ? const CircleAvatar(
+                    child: Icon(Icons.check),
+                  )
+                : SizedBox(
+                    child: Hero(
+                    tag: 'icon${coin.name}',
+                    child: Image.asset(coin.icon)),
+                    width: 40,
+                  )
+                ),
               title: Row(
                 children: [
                   Text(
