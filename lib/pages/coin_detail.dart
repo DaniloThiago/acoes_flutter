@@ -54,7 +54,7 @@ class _CoinDetailPageState extends State<CoinDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    child: Hero(tag: 'icon'+coin.name, child: Image.asset(coin.icon)),
+                    child: Hero(tag: 'icon${coin.name}', child: Image.asset(coin.icon)),
                     width: 50,
                   ),
                   Container(width: 10,),
