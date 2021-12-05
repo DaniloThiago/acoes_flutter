@@ -1,4 +1,5 @@
 import 'package:cripto_moeda/pages/home.dart';
+import 'package:cripto_moeda/pages/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
@@ -20,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) => const NavigationPage(),
           ));
     });
   }
