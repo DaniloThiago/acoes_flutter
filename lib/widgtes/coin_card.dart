@@ -39,7 +39,7 @@ class _CoinCardState extends State<CoinCard> {
           child: Row(
             children: [
               Hero(
-                tag: 'icon${coin.name}',
+                tag: 'icon${coin.symbol}',
                 child: Image.asset(
                   coin.icon,
                   height: 40,
@@ -62,24 +62,6 @@ class _CoinCardState extends State<CoinCard> {
                             fontSize: 13, color: Colors.black45),
                       )
                     ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: precoColor['down']!.withOpacity(0.05),
-                  border: Border.all(
-                    color: precoColor['down']!.withOpacity(0.4),
-                  ),
-                  borderRadius: BorderRadius.circular(100)
-                ),
-                child: Text(
-                  real.format(coin.price),
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: precoColor['down'],
-                    letterSpacing: -1,
                   ),
                 ),
               ),

@@ -40,8 +40,8 @@ class _NavigationPageState extends State<NavigationPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentpage,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Coins'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Ações'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorito'),
         ],
         onTap: (page) {
           pageController.animateToPage(

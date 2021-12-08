@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       return AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [Text('Coins')],
+          children: const [Text('Ações')],
         ),
         actions: [changeLanguageButton()],
         automaticallyImplyLeading: false,
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         },
         icon: const Icon(Icons.favorite),
         label: const Text(
-          'Favorite',
+          'Favorito',
           style: TextStyle(
             letterSpacing: 0,
             fontWeight: FontWeight.bold
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                   )
                 : SizedBox(
                     child: Hero(
-                    tag: 'icon${coin.name}',
+                    tag: 'icon${coin.symbol}',
                     child: Image.asset(coin.icon)),
                     width: 40,
                   )

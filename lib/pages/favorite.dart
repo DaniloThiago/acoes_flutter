@@ -17,7 +17,7 @@ class _FavoritePageState extends State<FavoritePage> {
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [Text('Favorite')],
+          children: const [Text('Favorito')],
         ),
         automaticallyImplyLeading: false,
       ),
